@@ -40,7 +40,7 @@ class BillController extends Controller
                 $whereData['status'] = 0;
             }
         }
-        $resultData = Bill::where($whereData)->orderBy('display_order', 'asc')->paginate(10);
+        $resultData = Bill::where($whereData)->orderBy('display_order', 'asc')->paginate(1);
         $data = [
             'resultData' => $resultData,
         ];
@@ -69,15 +69,14 @@ class BillController extends Controller
         $rules = [
             'billnumber' => 'required',
             'customer' => 'required',
-            // 'grandtotal' => 'required',
-            'field_type.*' => 'required',
-            'field_name.*' => 'required',
+            'products.*' => 'required',
+            'qty.*' => 'required',
+            'total.*' => 'required',
         ];
 
         $messages = [
             'billnumber.required' => Lang::get('validation.required',['attribute'=>'billnumber']),
             'customer.required' => Lang::get('validation.required',['attribute'=>'customer']),
-            // 'grandtotal.required' => Lang::get('validation.required',['attribute'=>'grandtotal']),
             'products.required' => Lang::get('validation.required',['attribute'=>'products']),
             'qty.required' => Lang::get('validation.required',['attribute'=>'qty']),
             'total.required' => Lang::get('validation.required',['attribute'=>'total']),
@@ -95,7 +94,6 @@ class BillController extends Controller
         $resultInsrt = Bill::create([
             'reference_number' => $request->billnumber,
             'customer_name' => $request->customer,
-            // 'grand_total' => $request->grandtotal,
             'status' =>1,
             'display_order' => $displayOrder
         ]);
@@ -165,15 +163,14 @@ class BillController extends Controller
         $rules = [
             'billnumber' => 'required',
             'customer' => 'required',
-            // 'grandtotal' => 'required',
-            'field_type.*' => 'required',
-            'field_name.*' => 'required',
+            'products.*' => 'required',
+            'qty.*' => 'required',
+            'total.*' => 'required',
         ];
 
         $messages = [
             'billnumber.required' => Lang::get('validation.required',['attribute'=>'billnumber']),
             'customer.required' => Lang::get('validation.required',['attribute'=>'customer']),
-            // 'grandtotal.required' => Lang::get('validation.required',['attribute'=>'grandtotal']),
             'products.required' => Lang::get('validation.required',['attribute'=>'products']),
             'qty.required' => Lang::get('validation.required',['attribute'=>'qty']),
             'total.required' => Lang::get('validation.required',['attribute'=>'total']),
