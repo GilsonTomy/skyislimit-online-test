@@ -65,7 +65,7 @@
                                             @php
                                                 $options = \App\Models\Product::where(['status'=>1])->get();
                                             @endphp
-                                            <select class="form-control option-required" onchange="loadDetails(this.value,1);" name="products[]" id="products1">
+                                            <select required class="form-control option-required" onchange="loadDetails(this.value,1);" name="products[]" id="products1">
                                                 <option value="">Select Product</option>
                                                 @if(!$options->isEmpty())
                                                     @foreach($options as $opt)
