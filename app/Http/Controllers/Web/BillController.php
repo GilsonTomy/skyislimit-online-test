@@ -40,7 +40,7 @@ class BillController extends Controller
                 $whereData['status'] = 0;
             }
         }
-        $resultData = Bill::where($whereData)->orderBy('display_order', 'asc')->paginate(1);
+        $resultData = Bill::where($whereData)->orderBy('display_order', 'asc')->paginate(10);
         $data = [
             'resultData' => $resultData,
         ];
